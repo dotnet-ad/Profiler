@@ -12,6 +12,12 @@
 		bool IsAlive { get; }
 
 		/// <summary>
+		/// Gets the key of the instance.
+		/// </summary>
+		/// <value>The name.</value>
+		string Key { get; }
+
+		/// <summary>
 		/// Gets the name of the instance.
 		/// </summary>
 		/// <value>The name.</value>

@@ -11,6 +11,7 @@
 		{
 			public ReferenceSnapshot(IReference reference)
 			{
+				this.Key = reference.Key;
 				this.Name = reference.Name;
 				this.Type = reference.Type;
 				this.Creation = reference.Creation;
@@ -21,6 +22,8 @@
 					this.Properties[item.Key] = item.Value;
 				}
 			}
+
+			public string Key { get; private set; }
 
 			public string Name { get; private set; }
 
@@ -61,8 +64,8 @@
 
 		public bool HasSameElements(Snapshot other)
 		{
-			var names = this.References.Select(r => r.Name).OrderBy(r => r);
-			var othernames = other.References.Select(r => r.Name).OrderBy(r => r);
+			var names = this.References.Select(r => r.Key).OrderBy(r => r);
+			var othernames = other.References.Select(r => r.Key).OrderBy(r => r);
 			return names.SequenceEqual(othernames);
 
 		}

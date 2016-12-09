@@ -19,7 +19,8 @@
 
 		public Reference(T instance, Dictionary<string, Func<T, string>> properties, string name = null)
 		{
-			this.Name = name ?? instance.GetHashCode().ToString();
+			this.Key = instance.GetHashCode().ToString();
+			this.Name = name ?? this.Key;
 			this.reference = new WeakReference<T>(instance);
 			this.Creation = DateTime.Now;
 			this.PropertyGetters = properties;
@@ -39,7 +40,9 @@
 
 		public Type Type => typeof(T);
 
-		public string Name { get; private set; }
+		public string Key { get; private set; }
+
+		public string Name { get; private set; } 
 
 		public bool IsAlive
 		{
