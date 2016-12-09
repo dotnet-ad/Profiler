@@ -67,15 +67,15 @@ public override void MotionEnded(UIEventSubtype motion, UIEvent evt)
 
 ## Roadmap
 
-[X] Profiling
-[X] iOS View
-[X] iOS Sample
-[ ] Android View
-[ ] Android Sample
-[ ] NuGet package
+- [X] Profiling
+- [X] iOS View
+- [X] iOS Sample
+- [ ] Android View
+- [ ] Android Sample
+- [ ] NuGet package
 
-[ ] Add filters to views
-[ ] Add graphs to views
+- [ ] Add filters to views
+- [ ] Add graphs to views
 
 ## Contributions
 
