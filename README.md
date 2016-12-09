@@ -65,13 +65,40 @@ public override void MotionEnded(UIEventSubtype motion, UIEvent evt)
 }
 ```
 
+
+```csharp
+// Android : Activities
+private ShakeListener shake;
+
+protected override void OnResume()
+{
+	base.OnResume();
+
+	shake = ShakeListener.Register(this);
+	shake.Shaked += OnShaked;
+}
+
+protected override void OnPause()
+{
+	base.OnPause();
+
+	shake.Unregister();
+}
+
+private void OnShaked(object sender, System.EventArgs e)
+{
+	shake.Shaked -= OnShaked;
+	Debugging.Profiler.Default.Show(this);
+}
+```
+
 ## Roadmap
 
 - [X] Profiling
 - [X] iOS View
 - [X] iOS Sample
-- [ ] Android View
-- [ ] Android Sample
+- [X] Android View
+- [X] Android Sample
 - [ ] NuGet package
 
 - [ ] Add filters to views

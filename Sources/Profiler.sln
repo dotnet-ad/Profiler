@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiler.Sample.iOS", "Prof
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiler.Droid", "Profiler.Droid\Profiler.Droid.csproj", "{9256F3CA-7AB5-4AD9-841A-550B9B53424F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiler.Sample.Droid", "Profiler.Sample.Droid\Profiler.Sample.Droid.csproj", "{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,8 +71,21 @@ Global
 		{9256F3CA-7AB5-4AD9-841A-550B9B53424F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{9256F3CA-7AB5-4AD9-841A-550B9B53424F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{9256F3CA-7AB5-4AD9-841A-550B9B53424F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Release|iPhone.Build.0 = Release|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9DD57A50-B97D-4786-9FCD-C692B0B53C1F} = {ECDD63AB-5C0F-4269-BC84-BE330C270E93}
+		{7D755678-A33E-4C9E-9C32-8BD6C17EFDFB} = {ECDD63AB-5C0F-4269-BC84-BE330C270E93}
 	EndGlobalSection
 EndGlobal

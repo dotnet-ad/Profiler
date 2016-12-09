@@ -21,6 +21,7 @@
 		{
 			this.Key = instance.GetHashCode().ToString();
 			this.Name = name ?? this.Key;
+			this.Type = instance.GetType();
 			this.reference = new WeakReference<T>(instance);
 			this.Creation = DateTime.Now;
 			this.PropertyGetters = properties;
@@ -38,7 +39,7 @@
 
 		public DateTime Creation { get; private set; }
 
-		public Type Type => typeof(T);
+		public Type Type { get; private set; }
 
 		public string Key { get; private set; }
 
