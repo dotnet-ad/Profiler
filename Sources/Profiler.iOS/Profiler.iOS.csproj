@@ -37,21 +37,37 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Views\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="ViewControllers\Files\" />
+    <Folder Include="ViewControllers\Memory\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SnapshotsViewController.cs" />
-    <Compile Include="SnapshotViewController.cs" />
-    <Compile Include="ReferenceViewController.cs" />
-    <Compile Include="ProfilerViewController.cs" />
     <Compile Include="ProfilerExtensions.cs" />
+    <Compile Include="ViewControllers\Files\Cells\FileCell.cs" />
+    <Compile Include="ViewControllers\Files\Cells\FileCell.designer.cs">
+      <DependentUpon>FileCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Files\EditorViewController.cs" />
+    <Compile Include="ViewControllers\Files\FolderViewController.cs" />
+    <Compile Include="ViewControllers\Files\PreviewViewController.cs" />
+    <Compile Include="ViewControllers\Memory\Cells\ReferenceCell.cs" />
+    <Compile Include="ViewControllers\Memory\Cells\ReferenceCell.designer.cs">
+      <DependentUpon>ReferenceCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Memory\MemoryViewController.cs" />
+    <Compile Include="ViewControllers\Memory\ReferenceViewController.cs" />
+    <Compile Include="ViewControllers\ProfilerViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Profiler\Profiler.csproj">
       <Project>{70598E26-C92E-46F3-815E-C90DA69D4B27}</Project>
       <Name>Profiler</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="ViewControllers\Files\Cells\FileCell.xib" />
+    <InterfaceDefinition Include="ViewControllers\Memory\Cells\ReferenceCell.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

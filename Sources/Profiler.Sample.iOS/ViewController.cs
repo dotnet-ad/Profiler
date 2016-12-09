@@ -13,7 +13,7 @@ namespace Profiler.Sample.iOS
 			this.Title = "Example " + this.GetHashCode();
 				
 			//Start profiling this instance
-			Debugging.Profiler.Default.Register(this, nameof(Title));
+			Debugging.Profiler.Default.Memory.Register(this, nameof(Title));
 
 			this.forceLeak = forceLeak;
 		}
@@ -34,7 +34,7 @@ namespace Profiler.Sample.iOS
 			b2.SetTitle("Next with leak", UIControlState.Normal);
 			this.View.Add(b2);
 		}
-
+		 
 		public override void ViewWillAppear(bool animated)
 		{
 			base.ViewWillAppear(animated);

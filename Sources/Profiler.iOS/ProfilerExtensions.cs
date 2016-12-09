@@ -6,7 +6,7 @@ namespace Debugging
 	{
 		public static void Show(this Profiler profiler)
 		{
-			UIApplication.SharedApplication.KeyWindow.RootViewController.PresentModalViewController(new ProfilerViewController(),true);
+			UIApplication.SharedApplication.KeyWindow.RootViewController.PresentModalViewController(new UINavigationController(new ProfilerViewController()),true);
 		}
 	}
 }

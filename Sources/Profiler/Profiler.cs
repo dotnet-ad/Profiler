@@ -4,6 +4,7 @@
 	using System;
 	using System.Threading.Tasks;
 	using System.Linq;
+	using Debugging.Memory;
 
 	public class Profiler
 	{
@@ -15,85 +16,21 @@
 
 		#endregion
 
-		#region Fields
-
-		private List<Snapshot> snapshots = new List<Snapshot>();
-
-		private List<IReference> references = new List<IReference>();
-
-		#endregion
-
-		#region Properties
-
-		public TimeSpan TimeFrame { get; set; } = TimeSpan.FromSeconds(2);
-
-		public bool IsProfiling { get; private set; }
-
-		public IEnumerable<Snapshot> Snapshots => this.snapshots.ToArray();
-
-		#endregion
-
-		#region Methods
-
-		public void Register<T>(T instance, params string[] properties) where T : class => this.Register<T>(instance, properties, null);
-
-		public void Register<T>(T instance, IEnumerable<string> properties, string name = null) where T : class
+		public Profiler()
 		{
-			if (instance != null)
-			{
-				this.references.Add(new Reference<T>(instance, properties, name));
-			}
+			this.Memory = new Memory.Memory();
 		}
 
-		public void Register<T>(T instance, Dictionary<string, Func<T, string>> properties, string name = null) where T : class
+		public IMemory Memory { get; private set; }
+
+		public void Start()
 		{
-			if (instance != null)
-			{
-				this.references.Add(new Reference<T>(instance,properties,name));
-			}
+			this.Memory.Start();
 		}
 
-		public async void StartProfiling()
+		public void Stop()
 		{
-			if (!this.IsProfiling)
-			{
-				this.IsProfiling = true;
-				while (this.IsProfiling)
-				{
-					this.TakeSnapshot();
-					await Task.Delay(this.TimeFrame);
-				}
-			}
+			this.Memory.Stop();
 		}
-
-		public void StopProfiling()
-		{
-			this.IsProfiling = false;
-		}
-
-		public void Clean()
-		{
-			GC.Collect();
-			this.references.RemoveAll((r) => !r.IsAlive);
-		}
-
-		#endregion
-
-		#region Private methods
-
-		private void TakeSnapshot()
-		{
-			this.Clean();
-
-			var snapshot = new Snapshot(this.references);
-			var last = this.snapshots.LastOrDefault();
-
-			if (last == null || !last.HasSameElements(snapshot))
-			{
-				this.snapshots.Add(new Snapshot(this.references));
-			}
-		}
-
-		#endregion
 	}
 }

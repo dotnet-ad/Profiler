@@ -11,7 +11,7 @@
 		private double gravity = SensorManager.GravityEarth;
 		private double acceleration = 0;
 
-		private static readonly TimeSpan ShakeDetectionTimeLapse = TimeSpan.FromMilliseconds(250);
+		private static readonly TimeSpan ShakeDetectionTimeLapse = TimeSpan.FromMilliseconds(1000);
 		public double ShakeThreshold { get; set; } = 2f;
 		private const double LowPassFilter = 0.8f;
 
@@ -38,6 +38,7 @@
 			var manager = activity.GetSystemService(Activity.SensorService) as SensorManager;
 			manager.UnregisterListener(this);
 			Shaked = null;
+			activity = null;
 		}
 
 		public void OnSensorChanged(Android.Hardware.SensorEvent e)
@@ -61,6 +62,8 @@
 				}
 			}
 		}
+
+
 
 		public void OnAccuracyChanged(Sensor sensor, [GeneratedEnum] SensorStatus accuracy) {}
 	}

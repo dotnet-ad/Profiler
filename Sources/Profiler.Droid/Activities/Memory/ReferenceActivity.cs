@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using Android.App;
+	using Android.Content;
 	using Android.OS;
 	using Android.Views;
 	using Android.Widget;
@@ -14,10 +15,9 @@
 	{
 		public class Adapter : BaseAdapter<KeyValuePair<string, string>>
 		{
-			public Adapter(long snapshotTicks, string referenceKey)
+			public Adapter(string referenceKey)
 			{
-				var snapshot = Profiler.Default.Snapshots.First(s => s.Time.Ticks == snapshotTicks);
-				var reference = snapshot.References.First(r => r.Key == referenceKey);
+				var reference = Profiler.Default.Memory.References.First(s => s.Key == referenceKey);
 				this.properties = reference.Properties.OrderBy((arg) => arg.Key);
 			}
 
@@ -36,24 +36,22 @@
 				var property = this[position];
 
 				cell.Title.Text = property.Key;
-				cell.Value.Text = property.Value;
+				cell.SubTitle1.Text = property.Value;
 
 				return cell;
 			}
 		}
 
-		public const string ExtraSnaphotTicks = nameof(ExtraSnaphotTicks);
 		public const string ExtraReferenceKey = nameof(ExtraReferenceKey);
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 
-			var ticks = Intent.GetLongExtra(ExtraSnaphotTicks, -1);
 			var referenceKey = Intent.GetStringExtra(ExtraReferenceKey);
 
-			if (ticks >= 0 && referenceKey != null)
-				ListAdapter = new Adapter(ticks,referenceKey);
+			if (referenceKey != null)
+				ListAdapter = new Adapter(referenceKey);
 		}
 	}
 }

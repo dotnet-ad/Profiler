@@ -4,14 +4,18 @@ A *really* basic in-app profiler for Xamarin and UWP applications.
 
 ## Usage
 
-### Instance registration
+### Memory
+
+A memory profiler is available and will track a set of registered instances in a loop (*be careful, this process is heavy and don't activate this functionality in production*).
+
+#### Instance registration
 
 First, register any instance you want to profile
 
 ```csharp
 public ViewController()
 {
-	Debugging.Profiler.Default.Register(this);
+	Debugging.Profiler.Default.Memory.Register(this);
 }
 ```
 
@@ -20,7 +24,7 @@ You can also define a unique key (by default its instance HashCode).
 ```csharp
 public ViewController()
 {
-	Debugging.Profiler.Default.Register(this, "MyVC");
+	Debugging.Profiler.Default.Memory.Register(this, "MyVC");
 }
 ```
 
@@ -29,19 +33,29 @@ Finally, you can track and log properties on your profiled instances.
 ```csharp
 public ViewController()
 {
-	Debugging.Profiler.Default.Register(this, nameof(Title));
+	Debugging.Profiler.Default.Memory.Register(this, nameof(Title));
 }
 ```
 
 ### Start profiling
 
 ```csharp
-Debugging.Profiler.Default.StartProfiling();
+Debugging.Profiler.Default.Start();
 ```
 
 ### View
 
-![Screenshot](Documentation/Screenshot.png)
+![Screenshot](Documentation/Screenshot-iOS-00.png)
+
+![Screenshot](Documentation/Screenshot-iOS-01.png)
+
+![Screenshot](Documentation/Screenshot-iOS-02.png)
+
+![Screenshot](Documentation/Screenshot-Android-00.png)
+
+![Screenshot](Documentation/Screenshot-Android-01.png)
+
+![Screenshot](Documentation/Screenshot-Android-02.png)
 
 To display the profiler view use the `Show` method.
 
@@ -97,7 +111,7 @@ private void OnShaked(object sender, System.EventArgs e)
 - [X] Profiling
 - [X] iOS View
 - [X] iOS Sample
-- [X] Android View
+- [ ] Android View (In-Progress)
 - [X] Android Sample
 - [ ] NuGet package
 

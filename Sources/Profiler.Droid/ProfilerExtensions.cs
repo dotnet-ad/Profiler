@@ -6,7 +6,7 @@ namespace Debugging
 	{
 		public static void Show(this Profiler profiler, Activity activity)
 		{
-			activity.StartActivity(typeof(SnapshotsActivity));
+			activity.StartActivity(typeof(ProfilerActivity));
 		}
 	}
 }

@@ -45,19 +45,22 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SnapshotsActivity.cs" />
-    <Compile Include="Views\ValueCell.cs" />
     <Compile Include="ShakeListener.cs" />
     <Compile Include="ProfilerExtensions.cs" />
     <Compile Include="Extensions\DimensionsExtensions.cs" />
-    <Compile Include="SnapshotActivity.cs" />
-    <Compile Include="ReferenceActivity.cs" />
+    <Compile Include="Activities\Memory\MemoryActivity.cs" />
+    <Compile Include="Activities\Memory\ReferenceActivity.cs" />
+    <Compile Include="Activities\Memory\Cells\ValueCell.cs" />
+    <Compile Include="Activities\ProfilerActivity.cs" />
+    <Compile Include="Activities\Files\FolderActivity.cs" />
+    <Compile Include="Activities\Files\EditorActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\layout\reference_cell.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Profiler\Profiler.csproj">
@@ -66,8 +69,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Resources\layout\" />
+    <Folder Include="Activities\" />
+    <Folder Include="Activities\Memory\" />
+    <Folder Include="Activities\Memory\Cells\" />
+    <Folder Include="Activities\Files\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

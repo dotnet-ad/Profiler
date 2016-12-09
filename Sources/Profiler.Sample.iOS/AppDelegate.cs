@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using System.IO;
+using Foundation;
 using UIKit;
 
 namespace Profiler.Sample.iOS
@@ -21,9 +22,13 @@ namespace Profiler.Sample.iOS
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
 
+
+			var folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+			File.WriteAllText(Path.Combine(folder, "test.txt"), "This is an example file");
+
 			UIApplication.SharedApplication.ApplicationSupportsShakeToEdit = true;
 
-			Debugging.Profiler.Default.StartProfiling();
+			Debugging.Profiler.Default.Start();
 
 			this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
 			this.Window.RootViewController = new UINavigationController(new ViewController(false));

@@ -2,37 +2,68 @@
 using Android.Widget;
 using Android.OS;
 using Debugging;
+using Android.Content;
+using System.IO;
 
 namespace Profiler.Sample.Droid
 {
 	[Activity(Label = "Profiler.Sample.Droid", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
-		int count = 1;
+		public static bool written;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			Debugging.Profiler.Default.StartProfiling();
+			if (!written)
+			{
+				var folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+				System.IO.File.WriteAllText(Path.Combine(folder, "test.txt"), "This is an example file");
+				written = true;
+			}
 
-			Debugging.Profiler.Default.Register(this);
+			this.leak = Intent.GetBooleanExtra(nameof(leak), false);
+
+			Debugging.Profiler.Default.Start();
+
+			Debugging.Profiler.Default.Memory.Register(this);
 
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			Button button = FindViewById<Button>(Resource.Id.myButton);
+			this.button = FindViewById<Button>(Resource.Id.myButton);
+			this.button2 = FindViewById<Button>(Resource.Id.myButton2);
+		}
 
-			button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+		void OnClick(object sender, System.EventArgs e)
+		{
+			var intent = new Intent(this, typeof(MainActivity));
+			intent.PutExtra(nameof(leak), false);
+			this.StartActivity(intent);
+		}
+
+		void OnLeakClick(object sender, System.EventArgs e)
+		{
+			var intent = new Intent(this, typeof(MainActivity));
+			intent.PutExtra(nameof(leak), true);
+			this.StartActivity(intent);
 		}
 
 		private ShakeListener shake;
 
+		Button button, button2;
+
+		private bool leak;
+
 		protected override void OnResume()
 		{
 			base.OnResume();
+
+			button.Click += OnClick;
+			button2.Click += OnLeakClick;
 
 			shake = ShakeListener.Register(this);
 			shake.Shaked += OnShaked;
@@ -42,12 +73,17 @@ namespace Profiler.Sample.Droid
 		{
 			base.OnPause();
 
+			if (!leak)
+			{
+				button.Click -= OnClick;
+				button2.Click -= OnLeakClick;
+			}
+
 			shake.Unregister();
 		}
 
 		private void OnShaked(object sender, System.EventArgs e)
 		{
-			shake.Shaked -= OnShaked;
 			Debugging.Profiler.Default.Show(this);
 		}
 	}

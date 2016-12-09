@@ -30,9 +30,15 @@
   <ItemGroup>
     <Compile Include="Profiler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IReference.cs" />
-    <Compile Include="Snapshot.cs" />
-    <Compile Include="Reference{T}.cs" />
+    <Compile Include="Memory\IReference.cs" />
+    <Compile Include="Memory\Reference{T}.cs" />
+    <Compile Include="Memory\Memory.cs" />
+    <Compile Include="Memory\IMemory.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Memory\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
